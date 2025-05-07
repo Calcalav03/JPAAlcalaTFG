@@ -1,11 +1,13 @@
 package com.example.jpaalcalatfg.controllers;
 
 import com.example.jpaalcalatfg.dto.CeboDto;
+import com.example.jpaalcalatfg.dto.EquipamientoDto;
 import com.example.jpaalcalatfg.models.ResponseModel;
 import com.example.jpaalcalatfg.services.ServiceJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/jpa")
@@ -21,6 +23,16 @@ public class Controller {
     @PostMapping("/crearCebo")
     public ResponseEntity<ResponseModel> crearCebo(@RequestBody CeboDto ceboDto){
         return ResponseEntity.ok(serviceJPA.crearCebo(ceboDto));
+    }
+
+    @GetMapping("/equipamientos")
+    public ResponseEntity<ResponseModel> obtenerEquipamientos(){
+        return ResponseEntity.ok(serviceJPA.obtenerEquipamientos());
+    }
+
+    @PostMapping("/crearEquipamiento")
+    public ResponseEntity<ResponseModel> crearEquipamiento(@RequestBody EquipamientoDto equipamientoDto){
+        return ResponseEntity.ok(serviceJPA.crearEquipamiento(equipamientoDto));
     }
 
 }
