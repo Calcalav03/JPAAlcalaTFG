@@ -1,5 +1,10 @@
 package com.example.jpaalcalatfg.entities;
 
+import com.example.jpaalcalatfg.entities.Cebo;
+import com.example.jpaalcalatfg.entities.Clima;
+import com.example.jpaalcalatfg.entities.Equipamiento;
+import com.example.jpaalcalatfg.entities.MetodosPesca;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
@@ -54,9 +59,11 @@ public class Captura {
     private Set<Equipamiento> equipamientos = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "captura")
+    @JsonManagedReference
     private Set<Clima> climas = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "captura")
+    @JsonManagedReference
     private Set<MetodosPesca> metodosPescas = new LinkedHashSet<>();
 
     public Integer getId() {

@@ -1,5 +1,6 @@
 package com.example.jpaalcalatfg.controllers;
 
+import com.example.jpaalcalatfg.dto.CapturaDto;
 import com.example.jpaalcalatfg.dto.CeboDto;
 import com.example.jpaalcalatfg.dto.EquipamientoDto;
 import com.example.jpaalcalatfg.models.ResponseModel;
@@ -33,6 +34,13 @@ public class Controller {
     @PostMapping("/crearEquipamiento")
     public ResponseEntity<ResponseModel> crearEquipamiento(@RequestBody EquipamientoDto equipamientoDto){
         return ResponseEntity.ok(serviceJPA.crearEquipamiento(equipamientoDto));
+    }
+
+
+
+    @PostMapping("/crearCaptura")
+    public ResponseEntity<ResponseModel> crearCaptura(@RequestBody CapturaDto capturaDto){
+        return ResponseEntity.ok(serviceJPA.crearCaptura(capturaDto));
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.jpaalcalatfg.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
@@ -17,9 +18,10 @@ public class MetodosPesca {
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "captura_id")
+    @JsonBackReference
     private Captura captura;
 
-    @Column(name = "metodo", nullable = false, length = 100)
+    @Column(name = "metodo", nullable = false, length = 255)
     private String metodo;
 
     public Integer getId() {

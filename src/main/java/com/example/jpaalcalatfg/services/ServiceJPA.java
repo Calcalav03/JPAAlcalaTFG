@@ -1,16 +1,17 @@
 package com.example.jpaalcalatfg.services;
 
+import com.example.jpaalcalatfg.dto.CapturaDto;
 import com.example.jpaalcalatfg.dto.CeboDto;
 import com.example.jpaalcalatfg.dto.EquipamientoDto;
-import com.example.jpaalcalatfg.entities.Cebo;
-import com.example.jpaalcalatfg.entities.Equipamiento;
+import com.example.jpaalcalatfg.entities.*;
+import com.example.jpaalcalatfg.mappers.CapturaMapper;
 import com.example.jpaalcalatfg.mappers.CeboMapper;
 import com.example.jpaalcalatfg.mappers.EquipamientoMapper;
 import com.example.jpaalcalatfg.models.ResponseModel;
 import com.example.jpaalcalatfg.projections.CeboInfo;
 import com.example.jpaalcalatfg.projections.EquipamientoInfo;
-import com.example.jpaalcalatfg.repositories.CeboRepository;
-import com.example.jpaalcalatfg.repositories.EquipamientoRepository;
+import com.example.jpaalcalatfg.repositories.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,4 +64,49 @@ public class ServiceJPA {
         }
         return new ResponseModel(0,"Equipamiento creado", equipamiento);
     }
+
+    @Autowired
+    private CapturaRepository   capturaRepository;
+    @Autowired
+    private ClimaRepository climaRepository;
+    @Autowired
+    private MetodosPescaRepository metodosPescaRepository;
+
+    @Autowired
+    private CapturaMapper capturaMapper;
+
+
+
+
+
+    public ResponseModel crearCaptura(CapturaDto capturaDto){
+        Captura captura = capturaMapper.toEntity(capturaDto);
+
+        // Guardar la captura primero
+        capturaRepository.save(captura);
+
+        // Verificar si se ha creado correctamente
+        if(captura.getId() == null){
+            return new ResponseModel(1, "No se pudo crear la captura", null);
+        }
+
+        // Guardar climas asociados
+        for (Clima clima : captura.getClimas()) {
+            clima.setCaptura(captura);
+            climaRepository.save(clima);
+        }
+
+        // Guardar métodos de pesca asociados
+        for (MetodosPesca metodo : captura.getMetodosPescas()) {
+            metodo.setCaptura(captura);
+            metodosPescaRepository.save(metodo);
+        }
+
+        // Recargar la captura con climas y métodos de pesca
+        captura = capturaRepository.findById(captura.getId()).orElse(null);
+
+        return new ResponseModel(0, "Captura creada", captura);
+    }
+
+
 }

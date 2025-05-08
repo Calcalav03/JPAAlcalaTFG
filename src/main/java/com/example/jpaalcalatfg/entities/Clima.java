@@ -1,5 +1,6 @@
 package com.example.jpaalcalatfg.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
@@ -17,12 +18,13 @@ public class Clima {
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "captura_id")
+    @JsonBackReference // Controla la referencia inversa hacia Captura
     private Captura captura;
 
-    @Column(name = "temperatura", length = 10)
+    @Column(name = "temperatura", length = 255)
     private String temperatura;
 
-    @Column(name = "nubosidad", length = 100)
+    @Column(name = "nubosidad", length = 255)
     private String nubosidad;
 
     @Column(name = "lluvia")
