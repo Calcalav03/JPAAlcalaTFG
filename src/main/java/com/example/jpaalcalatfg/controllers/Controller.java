@@ -43,4 +43,17 @@ public class Controller {
         return ResponseEntity.ok(serviceJPA.crearCaptura(capturaDto));
     }
 
+    @GetMapping("/usuarioId/{nombre}")
+    public ResponseEntity<ResponseModel> obtenerIdUsuario(@PathVariable String nombre){
+        return ResponseEntity.ok(serviceJPA.obtenerIdPorNombre(nombre));
+    }
+
+
+    @GetMapping("/capturas")
+    public ResponseEntity<ResponseModel> obtenerTodasCapturas(){
+        return ResponseEntity.ok(serviceJPA.obtenerTodasCapturas());
+    }
+
+
+
 }

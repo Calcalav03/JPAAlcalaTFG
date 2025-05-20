@@ -8,8 +8,10 @@ import com.example.jpaalcalatfg.mappers.CapturaMapper;
 import com.example.jpaalcalatfg.mappers.CeboMapper;
 import com.example.jpaalcalatfg.mappers.EquipamientoMapper;
 import com.example.jpaalcalatfg.models.ResponseModel;
+import com.example.jpaalcalatfg.projections.CapturaInfo;
 import com.example.jpaalcalatfg.projections.CeboInfo;
 import com.example.jpaalcalatfg.projections.EquipamientoInfo;
+import com.example.jpaalcalatfg.projections.UsuarioInfo;
 import com.example.jpaalcalatfg.repositories.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,10 +77,6 @@ public class ServiceJPA {
     @Autowired
     private CapturaMapper capturaMapper;
 
-
-
-
-
     public ResponseModel crearCaptura(CapturaDto capturaDto){
         Captura captura = capturaMapper.toEntity(capturaDto);
 
@@ -106,6 +104,27 @@ public class ServiceJPA {
         captura = capturaRepository.findById(captura.getId()).orElse(null);
 
         return new ResponseModel(0, "Captura creada", captura);
+    }
+
+    public ResponseModel obtenerTodasCapturas(){
+        List<CapturaInfo> listaCapturas = capturaRepository.findAllBy();
+        if(!listaCapturas.isEmpty()){
+            return new ResponseModel(0,"Lista de capturas", listaCapturas);
+        }
+        return new ResponseModel(1,"No se pudo obtener las capturas", null);
+    }
+
+
+
+    @Autowired
+    UsuarioRepository usuarioRepository;
+
+    public ResponseModel obtenerIdPorNombre(String nombre){
+       UsuarioInfo usuarioInfo = usuarioRepository.BuscarIdByNombre(nombre);
+        if(usuarioInfo != null){
+            return new ResponseModel(0,"Id usuario", usuarioInfo.getId());
+        }
+        return new ResponseModel(1,"No se pudo obtener el id", null);
     }
 
 
