@@ -114,6 +114,14 @@ public class ServiceJPA {
         return new ResponseModel(1,"No se pudo obtener las capturas", null);
     }
 
+    public ResponseModel obtenerCapturasById(Integer id){
+        List<CapturaInfo> listaCapturas = capturaRepository.buscarPorIdUsu(id);
+        if(!listaCapturas.isEmpty()){
+            return new ResponseModel(0,"Lista de capturas", listaCapturas);
+        }
+        return new ResponseModel(1,"No se pudo obtener las capturas", null);
+    }
+
 
 
     @Autowired

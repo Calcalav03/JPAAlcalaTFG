@@ -61,7 +61,7 @@ public interface CapturaInfo {
 
         String getNubosidad();
 
-        Boolean isLluvia();
+        Boolean getLluvia();
     }
 
     /**

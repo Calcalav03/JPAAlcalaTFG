@@ -54,6 +54,11 @@ public class Controller {
         return ResponseEntity.ok(serviceJPA.obtenerTodasCapturas());
     }
 
+    @GetMapping("/capturas/{id}")
+    public ResponseEntity<ResponseModel> obtenerTodasCapturas(@PathVariable Integer id){
+        return ResponseEntity.ok(serviceJPA.obtenerCapturasById(id));
+    }
+
 
 
 }
