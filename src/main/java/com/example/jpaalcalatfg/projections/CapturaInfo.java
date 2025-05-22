@@ -37,6 +37,9 @@ public interface CapturaInfo {
      */
     interface UsuarioInfo {
         Integer getId();
+        String getNombre();
+
+        String getEmail();
     }
 
     /**
@@ -44,6 +47,10 @@ public interface CapturaInfo {
      */
     interface CeboInfo1 {
         Integer getId();
+
+        String getTipoCebo();
+
+        String getDescripcion();
     }
 
     /**
@@ -51,6 +58,11 @@ public interface CapturaInfo {
      */
     interface EquipamientoInfo1 {
         Integer getId();
+        String getTipoEquipo();
+
+        String getMarca();
+
+        String getModelo();
     }
 
     /**
