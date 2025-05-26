@@ -59,6 +59,14 @@ public class Controller {
         return ResponseEntity.ok(serviceJPA.obtenerCapturasById(id));
     }
 
+    @DeleteMapping("/capturas/Borrar/{id}")
+    public ResponseEntity<ResponseModel> borrarCaptura(@PathVariable Integer id) {
+
+        return ResponseEntity.ok(serviceJPA.eliminarCapturaId(id));
+
+
+    }
+
 
 
 }

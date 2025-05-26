@@ -11,6 +11,8 @@ public interface CapturaRepository extends JpaRepository<Captura, Integer> {
 
     List<CapturaInfo> findAllBy();
 
+    @Override
+    void deleteById(Integer integer);
 
     @Query("select c from Captura c")
     List<CapturaInfo> buscarTodasCapturas();

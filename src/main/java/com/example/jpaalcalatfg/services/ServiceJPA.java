@@ -122,6 +122,10 @@ public class ServiceJPA {
         return new ResponseModel(1,"No se pudo obtener las capturas", null);
     }
 
+    public ResponseModel eliminarCapturaId(Integer idCaptura) {
+        capturaRepository.deleteById(idCaptura);
+        return new ResponseModel(0,"Captura eliminada exitosamente", null);
+    }
 
 
     @Autowired
@@ -134,6 +138,7 @@ public class ServiceJPA {
         }
         return new ResponseModel(1,"No se pudo obtener el id", null);
     }
+
 
 
 }
