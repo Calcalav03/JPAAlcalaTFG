@@ -69,6 +69,7 @@ public interface CapturaInfo {
      * Projection for {@link com.example.jpaalcalatfg.entities.Clima}
      */
     interface ClimaInfo {
+        Integer getId();
         String getTemperatura();
 
         String getNubosidad();
@@ -80,6 +81,7 @@ public interface CapturaInfo {
      * Projection for {@link com.example.jpaalcalatfg.entities.MetodosPesca}
      */
     interface MetodosPescaInfo {
+        Integer getId();
         String getMetodo();
     }
 }

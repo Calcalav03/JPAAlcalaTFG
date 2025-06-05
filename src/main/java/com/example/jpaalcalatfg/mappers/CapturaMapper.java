@@ -4,8 +4,7 @@ import com.example.jpaalcalatfg.dto.CapturaDto;
 import com.example.jpaalcalatfg.entities.Captura;
 import org.mapstruct.*;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public interface CapturaMapper {
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)public interface CapturaMapper {
     Captura toEntity(CapturaDto capturaDto);
 
     @AfterMapping
@@ -20,6 +19,5 @@ public interface CapturaMapper {
 
     CapturaDto toDto(Captura captura);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Captura partialUpdate(CapturaDto capturaDto, @MappingTarget Captura captura);
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)Captura partialUpdate(CapturaDto capturaDto, @MappingTarget Captura captura);
 }

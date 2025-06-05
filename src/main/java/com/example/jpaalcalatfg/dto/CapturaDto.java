@@ -233,14 +233,19 @@ public class CapturaDto implements Serializable {
      * DTO for {@link com.example.jpaalcalatfg.entities.Clima}
      */
     public static class ClimaDto implements Serializable {
+        private final Integer id;
         private final String temperatura;
         private final String nubosidad;
         private final Boolean lluvia;
 
-        public ClimaDto(String temperatura, String nubosidad, Boolean lluvia) {
+        public ClimaDto(Integer id ,String temperatura, String nubosidad, Boolean lluvia) {
+            this.id = id;
             this.temperatura = temperatura;
             this.nubosidad = nubosidad;
             this.lluvia = lluvia;
+        }
+        public Integer getId() {
+            return id;
         }
 
         public String getTemperatura() {
@@ -283,12 +288,14 @@ public class CapturaDto implements Serializable {
      * DTO for {@link com.example.jpaalcalatfg.entities.MetodosPesca}
      */
     public static class MetodosPescaDto implements Serializable {
+        private final Integer id;
         private final String metodo;
 
-        public MetodosPescaDto(String metodo) {
+        public MetodosPescaDto(Integer id,String metodo) {
+            this.id = id;
             this.metodo = metodo;
         }
-
+        public Integer getId() {return id;}
         public String getMetodo() {
             return metodo;
         }

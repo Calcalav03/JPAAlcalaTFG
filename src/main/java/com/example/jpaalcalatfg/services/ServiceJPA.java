@@ -13,7 +13,6 @@ import com.example.jpaalcalatfg.projections.CeboInfo;
 import com.example.jpaalcalatfg.projections.EquipamientoInfo;
 import com.example.jpaalcalatfg.projections.UsuarioInfo;
 import com.example.jpaalcalatfg.repositories.*;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
